@@ -1,0 +1,120 @@
+.main-layout {
+  display: flex;
+}
+
+.toggle-sidebar-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 999;
+}
+
+.sidebar {
+  width: 300px;
+  height: 100%;
+  background-color: #e6ce77;
+  position: fixed;
+  top: 0;
+  left: 0; /* change from right: 0 to left: 0 */
+  z-index: 998;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.sidebar h1 {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  text-transform: uppercase; /* convert text to uppercase */
+  font-family: "Roboto", sans-serif; /* change font family */
+  letter-spacing: 15px; /* add letter spacing */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* add text shadow */
+}
+
+.item {
+  width: 150px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* add a subtle shadow */
+  transition: transform 0.3s ease; /* add a smooth transition */
+  text-align: center;
+}
+
+.item:hover {
+  transform: translateY(-2px); /* add a slight lift effect on hover */
+}
+
+.item img {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+}
+
+.menu-page {
+  flex: 1;
+  padding: 20px;
+}
+
+.close-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  float: right;
+  font-size: 1em;
+}
+
+.view-cart-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center items horizontally */
+  justify-content: center; /* center items vertically */
+}
+
+.remove-button {
+  background-color: #f44336;
+  color: whitesmoke;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.remove-button:hover {
+  background-color: #d32f2f; /* darker shade when hovered */
+}
+
+.button-container {
+  margin-top: 10px; /* adjust as needed */
+  text-align: center; /* center the button horizontally */
+}
+
+.total {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.checkout_button {
+  background-color: blue;
+  color: whitesmoke;
+  padding: 8px 40px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
