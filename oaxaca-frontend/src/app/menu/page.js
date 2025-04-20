@@ -63,7 +63,7 @@ function MenuPage() {
         ))}
       </div>
 
-      <div className="grid grid-cols-4 mt-15 mb-15 gap-4">
+      <div className="grid grid-cols-5 mt-15 mb-15 gap-3">
         {filteredMenus?.map((menu) => (
           <MenuCard
             key={menu.name}
