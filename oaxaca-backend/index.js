@@ -10,7 +10,7 @@ import { Server } from "socket.io";
 const app = express();
 const server = createServer(app);
 
-const port = 3333;
+const port = process.env.PORT || 3333;
 
 app.use(cors());
 app.use(express.json());
