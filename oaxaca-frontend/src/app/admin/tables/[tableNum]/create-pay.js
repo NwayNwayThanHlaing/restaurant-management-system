@@ -27,19 +27,22 @@ export default function PayForm({
 
   // function to handle payment
   const handlePay = async () => {
-    const socket = new io("http://localhost:3333");
+    const socket = new io("${process.env.NEXT_PUBLIC_API_URL}");
     if (amount < rightAmount) {
       alert("Amount paid is less than the total amount");
       return;
     }
     try {
-      const response = await fetch("http://localhost:3333/admin/orders/paid", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          orderIds: order_ids,
-        }),
-      });
+      const response = await fetch(
+        "${process.env.NEXT_PUBLIC_API_URL}/admin/orders/paid",
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            orderIds: order_ids,
+          }),
+        }
+      );
       if (response.ok) {
         alert("Payment successful");
         socket.emit("status-changed", { order_ids });

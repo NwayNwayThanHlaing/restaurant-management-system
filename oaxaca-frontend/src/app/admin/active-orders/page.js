@@ -19,7 +19,9 @@ function ActiveOrdersPage() {
   // Fetch orders from the server
   const fetchOrders = async () => {
     try {
-      const response = await fetch(`http://localhost:3333/admin/orders`);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/orders`
+      );
       if (response.ok) {
         const data = await response.json();
 
@@ -49,7 +51,7 @@ function ActiveOrdersPage() {
   const cancelOrder = async (orderId) => {
     try {
       const response = await fetch(
-        `http://localhost:3333/admin/orders/${orderId}/cancel`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/orders/${orderId}/cancel`,
         {
           method: "PUT",
         }
@@ -76,9 +78,9 @@ function ActiveOrdersPage() {
   // Mark an order as delivered
   const deliverOrder = async (orderId) => {
     try {
-      const socket = new io("http://localhost:3333");
+      const socket = new io("${process.env.NEXT_PUBLIC_API_URL}");
       const response = await fetch(
-        `http://localhost:3333/admin/orders/${orderId}/delivered`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/orders/${orderId}/delivered`,
         {
           method: "PUT",
         }
@@ -100,9 +102,9 @@ function ActiveOrdersPage() {
   // Mark an order as ready
   const readyOrder = async (orderId) => {
     try {
-      const socket = new io("http://localhost:3333");
+      const socket = new io("${process.env.NEXT_PUBLIC_API_URL}");
       const response = await fetch(
-        `http://localhost:3333/admin/orders/${orderId}/ready-to-deliver`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/orders/${orderId}/ready-to-deliver`,
         {
           method: "PUT",
         }
@@ -129,7 +131,7 @@ function ActiveOrdersPage() {
 
   // Socket connected for real-time updates
   useEffect(() => {
-    const socket = io("http://localhost:3333");
+    const socket = io("${process.env.NEXT_PUBLIC_API_URL}");
 
     socket.on("connect", () => {
       console.log("connected");

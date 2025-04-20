@@ -28,7 +28,9 @@ export default function UserManagementPage() {
   // function to fetch users from server
   const fetchUsers = async () => {
     try {
-      const response = await fetch(`http://localhost:3333/admin/users`);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/users`
+      );
       if (response.ok) {
         const data = await response.json();
 
@@ -46,7 +48,7 @@ export default function UserManagementPage() {
   const handleSaveUser = async (editingUser) => {
     try {
       const response = await fetch(
-        `http://localhost:3333/admin/users/${editingUser.id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/users/${editingUser.id}`,
         {
           method: "PUT",
           headers: {
@@ -77,7 +79,7 @@ export default function UserManagementPage() {
   const handleDeleteUser = async (userId) => {
     try {
       const response = await fetch(
-        `http://localhost:3333/admin/users/${userId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/users/${userId}`,
         {
           method: "DELETE",
         }

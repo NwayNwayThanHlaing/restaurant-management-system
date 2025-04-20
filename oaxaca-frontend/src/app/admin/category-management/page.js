@@ -9,9 +9,9 @@ export default function CategoryManagementPage() {
   const [categories, setCategories] = useState([]); // holds list of categories
   const [editingCategory, setEditingCategory] = useState({}); // holds category being edited
 
-  const titles = ["ID", "Category Name", "Actions"];  // table column titles
+  const titles = ["ID", "Category Name", "Actions"]; // table column titles
 
-  // fetch categories on component mount 
+  // fetch categories on component mount
   useEffect(() => {
     fetchCategories();
     editingCategory && console.log("Editing Category: ", editingCategory);
@@ -20,7 +20,9 @@ export default function CategoryManagementPage() {
   // function to fetch categories from server
   const fetchCategories = async () => {
     try {
-      const response = await fetch(`http://localhost:3333/categories`);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/categories`
+      );
       if (response.ok) {
         const data = await response.json();
 
@@ -38,7 +40,7 @@ export default function CategoryManagementPage() {
   const handleSaveCategory = async (editingCategory) => {
     try {
       const response = await fetch(
-        `http://localhost:3333/admin/categories/${editingCategory.id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/categories/${editingCategory.id}`,
         {
           method: "PUT",
           headers: {
@@ -69,7 +71,7 @@ export default function CategoryManagementPage() {
   const handleDeleteCategory = async (categoryId) => {
     try {
       const response = await fetch(
-        `http://localhost:3333/admin/category/${categoryId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/category/${categoryId}`,
         {
           method: "DELETE",
         }
@@ -77,7 +79,7 @@ export default function CategoryManagementPage() {
       if (response.ok) {
         setCategories(
           categories.filter((category) => category.id !== categoryId)
-        ); 
+        );
         setEditingCategory(null); // clearing editing state
       } else {
         console.error("Failed to delete category");

@@ -61,7 +61,7 @@ export default function CartProvider({ children }) {
 
   // function to submit an order
   async function submitOrder() {
-    const socket = new io("http://localhost:3333");
+    const socket = new io("${process.env.NEXT_PUBLIC_API_URL}");
     try {
       const orderData = {
         table_no: tableNumber,
@@ -74,13 +74,16 @@ export default function CartProvider({ children }) {
         total: cart.reduce((acc, item) => acc + item.price * item.quantity, 0),
       };
 
-      const response = await fetch("http://localhost:3333/admin/orders", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(orderData),
-      });
+      const response = await fetch(
+        "${process.env.NEXT_PUBLIC_API_URL}/admin/orders",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(orderData),
+        }
+      );
 
       if (response.ok) {
         clearCart();

@@ -19,7 +19,7 @@ export default function MenuManagementPage() {
   // function to fetch menu items from the server
   const fetchMenuItems = async () => {
     try {
-      const response = await fetch(`http://localhost:3333/menu`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/menu`);
       if (response.ok) {
         const data = await response.json();
 
@@ -36,7 +36,7 @@ export default function MenuManagementPage() {
   const handleSaveItem = async (editingItem) => {
     try {
       const response = await fetch(
-        `http://localhost:3333/admin/menu/${editingItem.id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/menu/${editingItem.id}`,
         {
           method: "PUT",
           headers: {
@@ -67,7 +67,7 @@ export default function MenuManagementPage() {
   const handleDeleteItem = async (itemId) => {
     try {
       const response = await fetch(
-        `http://localhost:3333/admin/menu/${itemId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/menu/${itemId}`,
         {
           method: "DELETE",
         }

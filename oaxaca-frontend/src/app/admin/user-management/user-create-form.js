@@ -27,13 +27,16 @@ export default function UserCreateForm({ setUsers }) {
 
   // function to handle form submission
   const onSubmit = async (data) => {
-    const response = await fetch("http://localhost:3333/admin/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      "${process.env.NEXT_PUBLIC_API_URL}/admin/users",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
 
     if (response.ok) {
       const { user } = await response.json();

@@ -18,7 +18,9 @@ export default function OrderHistoryPage() {
   // function to fetch orders from the server
   const fetchOrders = async () => {
     try {
-      const response = await fetch(`http://localhost:3333/admin/orders`);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/orders`
+      );
       if (response.ok) {
         const data = await response.json();
         console.log(data);
@@ -40,7 +42,7 @@ export default function OrderHistoryPage() {
   const removeOrder = async (orderId) => {
     try {
       const response = await fetch(
-        `http://localhost:3333/admin/orders/${orderId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/orders/${orderId}`,
         {
           method: "DELETE",
         }
@@ -61,7 +63,7 @@ export default function OrderHistoryPage() {
   const deliveredOrder = async (orderId) => {
     try {
       const response = await fetch(
-        `http://localhost:3333/admin/orders/${orderId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/orders/${orderId}`,
         {
           method: "DELETE",
         }

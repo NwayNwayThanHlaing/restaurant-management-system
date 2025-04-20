@@ -12,7 +12,9 @@ export default function AssistanceRequestsPage() {
   useEffect(() => {
     async function fetchRequests() {
       try {
-        const response = await fetch("http://localhost:3333/staff/Assistance");
+        const response = await fetch(
+          "${process.env.NEXT_PUBLIC_API_URL}/staff/Assistance"
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch items");
         }
@@ -30,7 +32,7 @@ export default function AssistanceRequestsPage() {
   const handleDeleteRequest = async (tableNo) => {
     try {
       const response = await fetch(
-        `http://localhost:3333/staff/AssistanceDelete/${tableNo}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/staff/AssistanceDelete/${tableNo}`,
         {
           method: "DELETE",
         }

@@ -17,11 +17,11 @@ function MenuPage() {
 
   // fetch categories and menus data on compoenent mount
   useEffect(() => {
-    fetch("http://localhost:3333/categories")
+    fetch("${process.env.NEXT_PUBLIC_API_URL}/categories")
       .then((response) => response.json())
       .then((data) => setCategories(data.categories));
 
-    fetch("http://localhost:3333/menu")
+    fetch("${process.env.NEXT_PUBLIC_API_URL}/menu")
       .then((response) => response.json())
       .then((data) => setMenus(data.menus));
   }, []);

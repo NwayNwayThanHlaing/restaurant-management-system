@@ -37,16 +37,19 @@ function tableNumPage({ params, currentItems, setCurrentItems }) {
 
   // function to handle order submission
   const handleSubmitOrder = async () => {
-    const response = await fetch("http://localhost:3333/admin/orders", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        table_no: params.tableNum,
-        items: cartItems,
-      }),
-    });
+    const response = await fetch(
+      "${process.env.NEXT_PUBLIC_API_URL}/admin/orders",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          table_no: params.tableNum,
+          items: cartItems,
+        }),
+      }
+    );
 
     if (response.ok) {
       alert("Order placed successfully");
@@ -86,15 +89,15 @@ function tableNumPage({ params, currentItems, setCurrentItems }) {
 
   // effect to fetch categories, menus, and orders
   useEffect(() => {
-    fetch("http://localhost:3333/categories")
+    fetch("${process.env.NEXT_PUBLIC_API_URL}/categories")
       .then((response) => response.json())
       .then((data) => setCategories(data.categories));
 
-    fetch("http://localhost:3333/menu")
+    fetch("${process.env.NEXT_PUBLIC_API_URL}/menu")
       .then((response) => response.json())
       .then((data) => setMenus(data.menus));
 
-    fetch("http://localhost:3333/admin/orders")
+    fetch("${process.env.NEXT_PUBLIC_API_URL}/admin/orders")
       .then((response) => response.json())
       .then((data) => {
         let a = data.orders.filter(

@@ -7,10 +7,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";  // import dialog components
+} from "@/components/ui/dialog"; // import dialog components
 import { useToast } from "@/components/ui/use-toast"; // import custom toast hook
-import { useEffect, useState } from "react";  // import React hooks
-import { useForm } from "react-hook-form";  // import form validation hook
+import { useEffect, useState } from "react"; // import React hooks
+import { useForm } from "react-hook-form"; // import form validation hook
 
 // component for creating new menu item
 export default function MenuCreateForm({ setItems }) {
@@ -19,16 +19,18 @@ export default function MenuCreateForm({ setItems }) {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();  // initialise form hook
+  } = useForm(); // initialise form hook
 
   const { toast } = useToast(); // initialise toast hook
-  const [open, setOpen] = useState(false);  // state for controlling dialog visibility
+  const [open, setOpen] = useState(false); // state for controlling dialog visibility
   const [categories, setCategories] = useState([]); // state for storing menu categories
 
   // effect hook to fetch menu categories from server
   useEffect(() => {
     const fetchCategories = async () => {
-      const response = await fetch("http://localhost:3333/categories");
+      const response = await fetch(
+        "${process.env.NEXT_PUBLIC_API_URL}/categories"
+      );
       if (response.ok) {
         const { categories } = await response.json();
         setCategories(categories);
@@ -39,7 +41,7 @@ export default function MenuCreateForm({ setItems }) {
 
   // function to handle form submission
   const onSubmit = async (data) => {
-    const response = await fetch("http://localhost:3333/menu", {
+    const response = await fetch("${process.env.NEXT_PUBLIC_API_URL}/menu", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,7 +52,7 @@ export default function MenuCreateForm({ setItems }) {
     if (response.ok) {
       const { menu } = await response.json();
       setItems((items) => [...items, menu]);
-      reset();  // resetting form fields
+      reset(); // resetting form fields
 
       toast({
         title: "Menu created",

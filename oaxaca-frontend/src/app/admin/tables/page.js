@@ -12,7 +12,9 @@ function TablesPage() {
 
   // function to fetch orders
   const fetchOrders = async () => {
-    const response = await fetch("http://localhost:3333/admin/orders");
+    const response = await fetch(
+      "${process.env.NEXT_PUBLIC_API_URL}/admin/orders"
+    );
     const data = await response.json();
     setOrders(
       data.orders?.filter(
@@ -28,7 +30,7 @@ function TablesPage() {
 
   // effect for socket connection and event listeners
   useEffect(() => {
-    const socket = io("http://localhost:3333");
+    const socket = io("${process.env.NEXT_PUBLIC_API_URL}");
 
     socket.on("connect", () => {
       console.log("connected");

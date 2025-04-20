@@ -26,13 +26,16 @@ export default function CategoryCreateForm({ setCategories }) {
 
   // function to handle form submission
   const onSubmit = async (data) => {
-    const response = await fetch("http://localhost:3333/categories", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      "${process.env.NEXT_PUBLIC_API_URL}/categories",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
 
     if (response.ok) {
       const { category } = await response.json();
