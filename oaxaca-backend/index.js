@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 // creating a Socket.IO instance
 export const io = new Server(server, {
   cors: {
-    origin: "${process.env.NEXT_PUBLIC_API_URL}",
+    origin: [process.env.NEXT_PUBLIC_API_URL, "http://localhost:3000"],
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true,
