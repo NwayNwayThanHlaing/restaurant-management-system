@@ -36,25 +36,22 @@ const userData = [
     role: Role.KITCHEN_STAFF,
     lastLogin: null,
   },
-  {
-    username: "staff4",
-    password: "staff4",
-    firstname: "kingswood",
-    lastname: "bel gi",
-    email: "kingswoodbelgi@gmail.com",
-    role: Role.KITCHEN_STAFF,
-    lastLogin: null,
-  },
 ];
 
 // function to seed users into the database
 export const seedUsers = async () => {
   // iterate over userData array and create users
   for (const u of userData) {
-    // update user object
-    const user = await prisma.user.create({
-      data: u,
+    const user = await prisma.user.upsert({
+      where: {
+        username: u.username, // assumes usernames are unique
+      },
+      update: {}, // no changes if already exists
+      create: u,
     });
+    // const user = await prisma.user.create({
+    //   data: u,
+    // });
     // log creation of users
     console.log(`Created user with id: ${user.id}`);
   }
